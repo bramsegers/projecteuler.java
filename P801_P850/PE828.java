@@ -208,11 +208,11 @@ public class PE828 {
     new PE828().solve(nums);
   }
 
-  int A[], B[]=new int[6], M, T;
+  int A[], B[]=new int[6], S, T;
   
   void f(int a, int b, int s) {
-    if (B[0]==T) M = M<1 || s<M ? s : M;
-    if (M > 0 && s >= M) return;
+    if (B[0]==T) S = S<1 || s<S ? s : S;
+    if (S > 0 && s >= S) return;
     for (int i=0;i<6;i++) if ((a>>i&1) < 1)
     f(a | 1<<i, b + 1, s + (B[b] = A[i]));
     if (b<2) return;
@@ -223,8 +223,7 @@ public class PE828 {
     if (p<=q) {B[b] = q-p; f(a, b+1, s);}
     if (p>0 && q%p<1) {B[b] = q/p; f(a, b+1, s);}
     if (q>0 && p%q<1) {B[b] = p/q; f(a, b+1, s);}
-    B[b++] = q;
-    B[b++] = p;
+    B[b] = q;
   }
 
   void solve(int[][][] nums) {
@@ -232,12 +231,12 @@ public class PE828 {
     long POW = 1;
     long MOD = 1005075251;
     for (int[][] n:nums) {
-      M = 0;
+      S = 0;
       T = n[0][0];
       A = n[1];
       f(0,0,0);
       POW = (3 * POW) % MOD;
-      ANS = (ANS + POW * M) % MOD;
+      ANS = (ANS + POW * S) % MOD;
     }
     System.out.println(ANS);
   }
