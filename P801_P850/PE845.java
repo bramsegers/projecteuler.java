@@ -1,6 +1,6 @@
 package P801_P850;
 
-public class PE845 {
+public class PE845 { 
 
   public static void main(String[] args) {
     new PE845().D((long)61);
