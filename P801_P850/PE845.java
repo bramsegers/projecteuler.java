@@ -29,9 +29,9 @@ public class PE845 {
     if (i==n.length()) return P[t];
     int k = (t<<6)+(i<<1)+u;
     if (M[k]>=0) return M[k];
-    int d = n.charAt(i)-'0';
-    for(int v=(u>0?d:9); v>=0; v--)
-      M[k] += f(n, i+1, t+v, (u>0)&&(v==d)?1:0);
+    int d = n.charAt(i)-'0', v;
+    for (v=(u<1?9:d); v>=0; v--, u=0)
+      M[k] += f(n, i+1, t+v, u);
     return ++M[k];
   }
 
