@@ -1,5 +1,5 @@
 package P801_P850;
-..
+
 public class PE846 {
 
   public static void main(String[] args) {
