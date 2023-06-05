@@ -37,7 +37,7 @@ public class PE846 {
     final int f = n;
     var ans = java.util.stream
       .IntStream
-      .range(0,n)
+      .range(0,f)
       .parallel()
       .mapToLong(k -> dfs(NUMS[k],k,k,1,new int[f]))
       .sum()/2;
