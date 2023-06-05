@@ -23,7 +23,7 @@ public class PE846 {
       for (int q=2; q<=N/p;) NUMS[n++] = q*=p;
     }
 
-    PAIR = new int[n][512];
+    PAIR = new int[n][300];
     for (int i=0; i<n; i++){
       for (int j=i+1; j<n; j++){
         long r = 1L*NUMS[i]*NUMS[j]-1;
