@@ -12,21 +12,20 @@ public class PE846 {
   int[][] PAIR;
 
   void solve(int N) {
-
-    NUMS = new int[200000];
-    PAIR = new int[200000][300];
-
+    
+    NUMS = new int[N];
     int[] PRIMES = new int[N];
-    int v = NUMS[1] = ++NUMS[0] + 1;
+    int n = NUMS[++NUMS[0]]=2;
     for (int p=1; (p+=2)<N;){
       if (PRIMES[p]>0) continue;
       for (int q=p; (q+=p)<N;) PRIMES[q] = 1;
-      for (int q=1; q<=N/p;) NUMS[v++] = q*=p;
-      for (int q=2; q<=N/p;) NUMS[v++] = q*=p;
+      for (int q=1; q<=N/p;) NUMS[n++] = q*=p;
+      for (int q=2; q<=N/p;) NUMS[n++] = q*=p;
     }
 
-    for (int i=0; i<v; i++){
-      for (int j=i+1; j<v; j++){
+    PAIR = new int[n][512];
+    for (int i=0; i<n; i++){
+      for (int j=i+1; j<n; j++){
         long r = 1L*NUMS[i]*NUMS[j]-1;
         long s = (long) Math.sqrt(r);
         if (r>s*s) continue;
@@ -35,14 +34,13 @@ public class PE846 {
       }
     }
 
-    final int i = v;
-    long ans = java.util.stream
+    final int f = n;
+    var ans = java.util.stream
       .IntStream
-      .range(0,i)
+      .range(0,n)
       .parallel()
-      .mapToLong(k -> dfs(NUMS[k],k,k,1,new int[i]))
+      .mapToLong(k -> dfs(NUMS[k],k,k,1,new int[f]))
       .sum()/2;
-
     System.out.format("F(%d)=%d%n", N, ans);
   }
 
