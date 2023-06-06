@@ -35,7 +35,7 @@ public class PE846 {
     }
 
     final int f = n;
-    var ans = java.util.stream
+    long ans = java.util.stream
       .IntStream
       .range(0,f)
       .parallel()
