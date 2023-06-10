@@ -2,37 +2,36 @@ package P801_P850;
 
 public class PE845 {
 
-  public static void main(String[] args) {
+  public static void main(String[] args){
     new PE845().D((long)61);
     new PE845().D((long)1e8);
     new PE845().D((long)1e16);
   }
 
-  int[] P = new int[200];
-  long[] M = new long[10000];
+  long[] PRI,MEM;
 
-  void D(long n) {
-    java.util.Arrays.fill(P,2,200,1);
-    for (int i=1; ++i<200;) if(P[i]>0)
-    for (int j=i; i+j<200;) P[j+=i]=0;
-    long a=0, b=(long)1e18;
+  void D(long n){
+    int i,j,p = 200;
+    PRI = new long[p];
+    for (i=1; ++i<p;) PRI[i]=1;
+    for (i=1; ++i<p;) if (PRI[i]>0)
+    for (j=i; i+j<p;) PRI[j+=i]=0;
+    long a=0, b=(long)1e18, m;
     while (a+1<b) {
-      long c = (a+b)/2;
-      java.util.Arrays.fill(M, -1);
-      if (f(""+c,0,0,1) < n) a = c;
-      else b = c;
+      m = (a+b)/2;
+      MEM = new long[9999];
+      if (f(m,0,0,1)<n) a=m; else b=m;
     }
     System.out.format("D(%d)=%d%n",n,b);
   }
 
-  long f(String n, int i, int t, int u) {
-    if (i==n.length()) return P[t];
-    int k = (t<<6)+(i<<1)+u;
-    if (M[k]>=0) return M[k];
-    int d = n.charAt(i)-'0', v;
-    for (v=(u<1?9:d); v>=0; v--, u=0)
-      M[k] += f(n, i+1, t+v, u);
-    return ++M[k];
+  long f(long n, int a, int b, int c){
+    if (b==(""+n).length()) return PRI[a];
+    int k = (a<<6)+(b<<1)+(c);
+    int d = c<1?9:(""+n).charAt(b)-48;
+    if (MEM[k]<1) while (d>=0)
+      MEM[k] += f(n, a+d--, b+1, c+(c=0));
+    return MEM[k];
   }
 
 }
