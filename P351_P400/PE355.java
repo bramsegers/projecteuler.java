@@ -7,7 +7,7 @@ public class PE355{
     new PE355().solve(200000);
   }
 
-  int N,P[],Q[];
+  int N, P[], Q[];
 
   void solve(int n){
     int i,j,k;
