@@ -10,31 +10,31 @@ public class PE295 {
     new PE295().solve(100);
     new PE295().solve(100000);
   }
-  
+
   HashSet<Long> U, M;
   HashMap<Long, List<Long>> K;
   HashMap<List<Long>, Long> C;
-    
+
   void solve(long N) {
-    
+
     long ans = 0;
     U = new HashSet<>();
     M = new HashSet<>();
     K = new HashMap<>();
     C = new HashMap<>();
-        
+
     ans += f(N,1,1,1);
     for (long y=1; y<1000; y+=2)
       for (long x=1; x<y; x+=2)
         ans += f(N,x,y,1);
-    
+
     f(N,1,1,0);
     for (long y=1; y<1000; y+=2)
       for (long x=1; x<y; x+=2)
         f(N,x,y,0);
 
     for (var a:K.values()) dfs(a,0);
-    
+
     for (var e:C.entrySet()) {
       long n = e.getKey().size()%2;
       long s = e.getValue();
